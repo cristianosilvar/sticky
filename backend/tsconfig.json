@@ -7,8 +7,5 @@
     "rootDir": "src",
     "strict": true,
     "esModuleInterop": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
   }
 }

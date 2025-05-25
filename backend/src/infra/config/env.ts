@@ -7,6 +7,8 @@ const envSchema = z.object({
     .default("development"),
   DATABASE_URL: z.string().url(),
   PORT: z.string().default("8080"),
+  JWT_SECRET: z.string(),
+  JWT_EXPIRES_IN: z.union([z.string(), z.number()]),
 });
 
 const parsed = envSchema.safeParse(process.env);
