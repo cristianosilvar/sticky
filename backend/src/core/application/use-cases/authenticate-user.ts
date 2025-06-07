@@ -1,9 +1,10 @@
+import bcrypt from "bcryptjs";
+import jwt, { SignOptions } from "jsonwebtoken";
+
 import { env } from "../../../infra/config/env";
 import { left, right } from "../../../shared/utils/either";
 import { UserRepository } from "../../domain/repositories/user-repository";
 import { AuthenticateUserInput } from "../dto/authenticate-user-dto";
-import bcrypt from "bcryptjs";
-import jwt, { SignOptions } from "jsonwebtoken";
 
 export class AuthenticaUserUseCase {
   constructor(private userRepository: UserRepository) {}

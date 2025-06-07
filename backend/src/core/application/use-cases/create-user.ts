@@ -1,14 +1,15 @@
-import { left, right } from "../../../shared/utils/either";
-import { CreateUserInput } from "../dto/create-user-dto";
-import { UserRepository } from "./../../domain/repositories/user-repository";
-import { randomUUID } from "crypto";
 import bcrypt from "bcryptjs";
-import { User } from "../../domain/entities/user-entity";
+
+import { Either, left, right } from "../../../shared/utils/either";
+import { CreateUserInput, CreateUserOutput } from "../dto/create-user-dto";
+import { UserRepository } from "./../../domain/repositories/user-repository";
 
 export class CreateUser {
   constructor(private userRepository: UserRepository) {}
 
-  async execute(params: CreateUserInput) {
+  async execute(
+    params: CreateUserInput
+  ): Promise<Either<string, CreateUserOutput>> {
     const userAlreadyExists = await this.userRepository.findByEmail(
       params.email
     );

@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { env } from "@/infra/config/env";
-import { logger } from "@/infra/config/logger";
+
+import { env } from "../config/env";
+import { logger } from "../config/logger";
 
 const prisma = new PrismaClient({
   log: env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],

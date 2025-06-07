@@ -1,26 +1,18 @@
 export class Left<L> {
-  readonly value: L;
-
-  constructor(value: L) {
-    this.value = value;
-  }
+  constructor(public readonly value: L) {}
 
   isLeft(): this is Left<L> {
     return true;
   }
 
-  isRight(): this is Right<any> {
+  isRight(): this is Right<never> {
     return false;
   }
 }
 export class Right<R> {
-  readonly value: R;
+  constructor(public readonly value: R) {}
 
-  constructor(value: R) {
-    this.value = value;
-  }
-
-  isLeft(): this is Left<any> {
+  isLeft(): this is Left<never> {
     return false;
   }
 
