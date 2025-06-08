@@ -1,10 +1,9 @@
 import bcrypt from "bcryptjs";
-import jwt, { SignOptions } from "jsonwebtoken";
 
-import { env } from "../../../infra/config/env";
 import { left, right } from "../../../shared/utils/either";
 import { UserRepository } from "../../domain/repositories/user-repository";
 import { AuthenticateUserInput } from "../dto/authenticate-user-dto";
+import { JwtService } from "../../../infra/auth/jwt-service";
 
 export class AuthenticaUserUseCase {
   constructor(private userRepository: UserRepository) {}
@@ -21,13 +20,7 @@ export class AuthenticaUserUseCase {
 
     if (!passwordMatch) return left("Invalid credentials");
 
-    const payload = { sub: user.id };
-    const secret = env.JWT_SECRET;
-    const options: SignOptions = {
-      expiresIn: env.JWT_EXPIRES_IN as number,
-    };
-
-    const token = jwt.sign(payload, secret, options);
+    const token = JwtService.sign(user.id);
 
     return right({
       token,
