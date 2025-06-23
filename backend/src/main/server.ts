@@ -6,12 +6,14 @@ import { logger } from "../infra/config/logger";
 import { env } from "../infra/config/env";
 import { setupSwagger } from "./config/swagger";
 import { usersRoutes } from "../infra/http/routes/user-routes";
+import { authRoutes } from "../infra/http/routes/auth-routes";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 app.use(usersRoutes);
+app.use(authRoutes);
 
 setupSwagger(app);
 

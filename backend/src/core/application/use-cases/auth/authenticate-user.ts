@@ -1,11 +1,11 @@
 import bcrypt from "bcryptjs";
 
-import { left, right } from "../../../shared/utils/either";
-import { UserRepository } from "../../domain/repositories/user-repository";
-import { AuthenticateUserInput } from "../dto/authenticate-user-dto";
-import { JwtService } from "../../../infra/auth/jwt-service";
+import { left, right } from "../../../../shared/utils/either";
+import { UserRepository } from "../../../domain/repositories/user-repository";
+import { AuthenticateUserInput } from "../../dto/authenticate-user-dto";
+import { JwtService } from "../../../../infra/auth/jwt-service";
 
-export class AuthenticaUserUseCase {
+export class AuthenticateUserUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(params: AuthenticateUserInput) {
@@ -15,7 +15,7 @@ export class AuthenticaUserUseCase {
 
     const passwordMatch = await bcrypt.compare(
       params.password,
-      user?.email ?? ""
+      user?.password ?? ""
     );
 
     if (!passwordMatch) return left("Invalid credentials");
