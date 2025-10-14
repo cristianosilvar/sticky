@@ -6,5 +6,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "react-router": "^7.9.3"
+  }
 }
