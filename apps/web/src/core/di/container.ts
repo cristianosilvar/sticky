@@ -1,7 +1,7 @@
-import { buildAuthContext } from "./builders/auth-builder";
+import { buildUserContext } from "./builders/user-builder";
 
-export const Auth = buildAuthContext();
+export const User = buildUserContext();
 
 export const DI_CONTAINER = {
-  Auth,
+  User,
 };

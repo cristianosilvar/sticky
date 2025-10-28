@@ -1,8 +1,8 @@
-import type { User } from "../entities/user";
+import type { UserEntity } from "../entities/user";
 
 interface UserRepository {
-  findById(id: string): Promise<User | null>;
-  save(user: User): Promise<void>;
+  findById(id: string): Promise<UserEntity | null>;
+  save(user: UserEntity): Promise<void>;
 }
 
 export { type UserRepository };
